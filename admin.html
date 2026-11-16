@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="th" data-type="product" data-radius="soft" data-buttons="solid" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>แอดมินร้าน</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..600&family=Anuphan:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #ffffff; --p-surface: #f4f4f2; --p-ink: #1f2b4d; --p-muted: #646b81;
+  --p-accent: #f7941d; --p-accent-ink: #1f2b4d; --p-action: #f7941d; --p-action-ink: #1f2b4d;
+  --p-inv-bg: #05070a; --p-inv-surface: #111417; --p-inv-ink: #ffffff; --p-inv-muted: #939597;
+  --p-inv-accent: #f7941d; --p-inv-accent-ink: #1f2b4d; --p-inv-action: #f7941d; --p-inv-action-ink: #1f2b4d;
+  /* the dealt pairing (mona) sets Latin letters and figures; Anuphan sets the Thai, which Mona Sans does not hold */
+  --font-display: "Mona Sans", "Anuphan", system-ui, sans-serif;
+  --font-text: "Mona Sans", "Anuphan", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.04em;
+  --display-stretch: 104%;
+  --ly-scale: 0.96;
+}
+</style>
+<link rel="stylesheet" href="app.css">
+<script src="config.js"></script>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">ข้ามไปยังเนื้อหา</a>
+    <a class="nav__logo" href="index.html"><span class="mark" data-mark="stack" aria-hidden="true"></span><span data-brand>ตำเรือน</span></a>
+    <div class="nav__actions app-nav">
+      <a class="nav__link" href="account.html">บัญชีของฉัน</a>
+      <a class="btn btn--secondary" href="index.html">กลับหน้าร้าน</a>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="app">
+  <div class="wrap">
+    <h1 class="app__title">แอดมินร้าน</h1>
+    <div data-view="setup" hidden><p class="t-lead">ยังไม่ได้เชื่อมต่อฐานข้อมูล ใส่ค่าใน config.js ก่อน</p></div>
+    <div data-view="loading"><p class="muted" role="status">กำลังโหลด</p></div>
+    <div data-view="denied" hidden>
+      <p class="t-lead" id="denied-text">หน้านี้สำหรับแอดมินของร้าน</p>
+      <div class="btn-row"><a class="btn btn--primary" href="account.html">เข้าสู่ระบบ</a></div>
+    </div>
+
+    <div data-view="admin" hidden>
+      <div class="app__tabs" role="tablist" aria-label="ส่วนของแอดมิน">
+        <button class="app__tab" type="button" role="tab" aria-selected="true" aria-controls="tab-orders" id="t-orders">ออเดอร์</button>
+        <button class="app__tab" type="button" role="tab" aria-selected="false" aria-controls="tab-products" id="t-products">สินค้า</button>
+        <button class="app__tab" type="button" role="tab" aria-selected="false" aria-controls="tab-promotions" id="t-promotions">โปรโมชั่น</button>
+        <button class="app__tab" type="button" role="tab" aria-selected="false" aria-controls="tab-settings" id="t-settings">หน้าร้านและ LINE</button>
+        <button class="app__tab" type="button" role="tab" aria-selected="false" aria-controls="tab-members" id="t-members">สมาชิก</button>
+      </div>
+      <p class="form__status app__status" role="status" id="admin-status"></p>
+
+      <div role="tabpanel" id="tab-orders" aria-labelledby="t-orders">
+        <ul class="app__list" id="orders"></ul>
+      </div>
+
+      <div role="tabpanel" id="tab-products" aria-labelledby="t-products" hidden>
+        <p class="app__note">รูปสินค้า: ไฟล์ JPG, PNG หรือ WebP ระบบย่อให้กว้างไม่เกิน 1,280 พิกเซลก่อนอัปโหลด สินค้าที่ปิดการขายจะไม่แสดงบนหน้าร้าน</p>
+        <div class="app__products" id="products"></div>
+        <h2 class="app__h2">เพิ่มสินค้า</h2>
+        <div id="new-product"></div>
+      </div>
+
+      <div role="tabpanel" id="tab-promotions" aria-labelledby="t-promotions" hidden>
+        <div class="app__card app__narrow">
+          <form class="form" id="promo-form" data-fix="มี {n} ช่องที่ต้องแก้" novalidate>
+            <div class="field--full" id="promo-rows"></div>
+            <div class="btn-row"><button class="btn btn--secondary" type="button" id="promo-add">เพิ่มขั้นส่วนลด</button><button class="btn btn--primary" type="submit">บันทึกโปรโมชั่น</button></div>
+            <p class="form__status" role="status" data-form-status></p>
+            <p class="t-small muted">ออเดอร์ได้ส่วนลดขั้นที่ดีที่สุดที่จำนวนกระปุกถึง ส่วนลดสมาชิกตั้งที่แท็บหน้าร้านและ LINE</p>
+          </form>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="tab-settings" aria-labelledby="t-settings" hidden>
+        <div class="app__card">
+          <form class="form" id="settings-form" data-fix="มี {n} ช่องที่ต้องแก้" novalidate>
+            <div class="field"><label for="s-brand_name">ชื่อแบรนด์</label><input id="s-brand_name" type="text" maxlength="40" required aria-describedby="s-brand_name-err"><p class="field__error" id="s-brand_name-err" hidden>เขียนชื่อแบรนด์</p></div>
+            <div class="field"><label for="s-line_id">LINE ID ของร้าน รวมเครื่องหมาย @</label><input id="s-line_id" type="text" maxlength="40" autocomplete="off" pattern="@?[A-Za-z0-9._\-]{2,39}" aria-describedby="s-line_id-err"><p class="field__error" id="s-line_id-err" hidden>เขียน LINE ID เช่น @myshop ใช้ได้เฉพาะตัวอังกฤษ ตัวเลข จุด ขีด</p></div>
+            <div class="field field--full"><label for="s-hero_title">หัวเรื่องบนสุด เว้นวรรคตรงที่ให้ขึ้นบรรทัดใหม่ได้</label><input id="s-hero_title" type="text" maxlength="80" required aria-describedby="s-hero_title-err"><p class="field__error" id="s-hero_title-err" hidden>เขียนหัวเรื่องบนสุด</p></div>
+            <div class="field field--full"><label for="s-hero_lead">ข้อความใต้หัวเรื่อง</label><textarea id="s-hero_lead" rows="3" maxlength="300" required aria-describedby="s-hero_lead-err"></textarea><p class="field__error" id="s-hero_lead-err" hidden>เขียนข้อความใต้หัวเรื่อง</p></div>
+            <div class="field"><label for="s-products_title">หัวข้อรายการสินค้า</label><input id="s-products_title" type="text" maxlength="60" required aria-describedby="s-products_title-err"><p class="field__error" id="s-products_title-err" hidden>เขียนหัวข้อรายการสินค้า</p></div>
+            <div class="field"><label for="s-products_lead">ข้อความใต้หัวข้อสินค้า</label><input id="s-products_lead" type="text" maxlength="160" aria-describedby="s-products_lead-err"><p class="field__error" id="s-products_lead-err" hidden>ข้อความยาวเกินไป</p></div>
+            <div class="field"><label for="s-promo_title">หัวข้อโปรโมชั่น</label><input id="s-promo_title" type="text" maxlength="60" required aria-describedby="s-promo_title-err"><p class="field__error" id="s-promo_title-err" hidden>เขียนหัวข้อโปรโมชั่น</p></div>
+            <div class="field"><label for="s-promo_lead">ข้อความใต้หัวข้อโปรโมชั่น</label><input id="s-promo_lead" type="text" maxlength="200" aria-describedby="s-promo_lead-err"><p class="field__error" id="s-promo_lead-err" hidden>ข้อความยาวเกินไป</p></div>
+            <div class="field"><label for="s-close_title">หัวข้อท้ายหน้า</label><input id="s-close_title" type="text" maxlength="60" required aria-describedby="s-close_title-err"><p class="field__error" id="s-close_title-err" hidden>เขียนหัวข้อท้ายหน้า</p></div>
+            <div class="field"><label for="s-footer_lede">คำอธิบายร้านท้ายหน้า</label><input id="s-footer_lede" type="text" maxlength="80" aria-describedby="s-footer_lede-err"><p class="field__error" id="s-footer_lede-err" hidden>ข้อความยาวเกินไป</p></div>
+            <div class="field"><label for="s-member_discount_percent">ส่วนลดสมาชิก เป็นเปอร์เซ็นต์ (0 คือไม่มี)</label><input id="s-member_discount_percent" type="text" inputmode="numeric" pattern="[0-9]{1,2}" required aria-describedby="s-member_discount_percent-err"><p class="field__error" id="s-member_discount_percent-err" hidden>เขียนตัวเลข 0 ถึง 50</p></div>
+            <div class="btn-row"><button class="btn btn--primary" type="submit">บันทึกหน้าร้าน</button><a class="btn btn--secondary" href="index.html">ดูหน้าร้าน</a></div>
+            <p class="form__status" role="status" data-form-status></p>
+          </form>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="tab-members" aria-labelledby="t-members" hidden>
+        <ul class="app__list" id="members"></ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script src="vendor/supabase.js" defer></script>
+<script type="module" src="admin.js"></script>
+</body>
+</html>

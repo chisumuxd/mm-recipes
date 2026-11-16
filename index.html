@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="th" data-type="product" data-radius="soft" data-buttons="solid" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ตำเรือน: น้ำพริกกระปุก สั่งออนไลน์ ส่งถึงบ้าน</title>
+<meta name="description" content="น้ำพริกหนุ่ม น้ำพริกแคบหมู น้ำพริกนรก และน้ำพริกเผา บรรจุกระปุก เลือกจำนวนบนเว็บแล้วส่งออเดอร์เข้า LINE ของร้านได้ทันที">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ตำเรือน: น้ำพริกกระปุก สั่งออนไลน์ ส่งถึงบ้าน">
+<meta property="og:description" content="น้ำพริกสี่สูตร บรรจุกระปุก สั่งบนเว็บ ส่งออเดอร์เข้า LINE ของร้าน">
+<meta property="og:image" content="share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
+<!-- <link rel="canonical" href="https://[โดเมนของร้าน]/"> -->
+<meta name="site-kind" content="other">
+<meta name="page-type" content="product">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,400..600&family=Anuphan:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #ffffff; --p-surface: #f4f4f2; --p-ink: #1f2b4d; --p-muted: #646b81;
+  --p-accent: #f7941d; --p-accent-ink: #1f2b4d; --p-action: #f7941d; --p-action-ink: #1f2b4d;
+  --p-inv-bg: #05070a; --p-inv-surface: #111417; --p-inv-ink: #ffffff; --p-inv-muted: #939597;
+  --p-inv-accent: #f7941d; --p-inv-accent-ink: #1f2b4d; --p-inv-action: #f7941d; --p-inv-action-ink: #1f2b4d;
+  /* the dealt pairing (mona) sets Latin letters and figures; Anuphan sets the Thai, which Mona Sans does not hold */
+  --font-display: "Mona Sans", "Anuphan", system-ui, sans-serif;
+  --font-text: "Mona Sans", "Anuphan", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.04em;
+  --display-stretch: 104%;
+  --ly-scale: 0.96;
+}
+</style>
+<!-- the shop's database (config.js); while it is set, the page waits a moment for its content, 2.5 s at most -->
+<script src="config.js"></script>
+<script>if (window.SITE_CONFIG && window.SITE_CONFIG.supabaseUrl && window.SITE_CONFIG.supabaseAnonKey) { document.documentElement.classList.add('site-wait'); setTimeout(function () { document.documentElement.classList.remove('site-wait'); }, 2500); }</script>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/pinned-chapters/moment.js">
+<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
+<style>
+  /* Thai stacks tone marks over vowels: headings need more leading than the Latin scale gives */
+  :lang(th) :is(h1, h2, h3, .t-card, .footer__lede) { line-height: 1.3; }
+  :lang(th) body { line-height: 1.7; }
+  /* line-up: square pictures, one ratio for the row */
+  #products .tile { --tile-ratio: 4 / 5; min-width: 0; scroll-margin-top: 268px; }
+  #products .tile__media > img { position: absolute; inset: 0; }
+  @media (max-width: 1023px) { #products .tile { scroll-margin-top: calc(var(--nav) + var(--s-5)); } }
+  /* the palette's orange is 2.3:1 on white: the focus ring takes the ink, 3:1 or more on every ground */
+  :focus-visible { outline-color: var(--ink); }
+  .nb { white-space: nowrap; }
+  /* content from the shop's database: hidden until it has arrived, and the two sections whose length it sets
+     (the line-up, the order card) grow with it instead of holding one screen */
+  .site-wait main, .site-wait footer.closing { visibility: hidden; }
+  @media (min-width: 1280px) { main > :is(#products, #order) { height: auto; min-height: calc(var(--h, 1) * 100svh); } }
+  .order__qty { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+  /* the pinned chapters start on the section's top line, like every other section's h2 */
+  @media (min-width: 1024px) {
+    main #pairing[data-moment].is-live > .mo-pc__grid { align-content: start; padding-top: calc(var(--nav) + var(--s-7)); }
+    #pairing.is-live .mo-pc__visuals { aspect-ratio: 1; }
+  }
+  .menu-card .panel { --p-h: 200px; }
+  /* picture-develops: the section's one photograph on the split's right column */
+  .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(560px, var(--ly-fit)); }
+  .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+  /* the order card: the form on the alternate ground, the jar beside it */
+  .order__qty { grid-column: 1 / -1; display: grid; gap: var(--s-4); border: 0; padding: 0; margin: 0; }
+  .order__qty legend { padding: 0; margin-bottom: var(--s-3); font: 500 var(--t-small)/1.4 var(--font-text); }
+  .order__sum { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); margin: 0; font-variant-numeric: tabular-nums; }
+  .order__sum output { font: 500 var(--t-card)/1.3 var(--font-text); }
+  .order__qty label > span { display: block; font-weight: 400; color: var(--muted); }
+  .order__photo { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(680px, var(--ly-fit, 680px)); }
+  .order__photo > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  #order .field textarea { min-height: 96px; }
+  @media (max-width: 639px) {
+    .order__qty { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 1023px) { .order__photo { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-6); } }
+  /* 1024 to 1279: the order card under the jar, two screens, so the form is never squeezed beside it */
+  @media (min-width: 1024px) and (max-width: 1279px) { #order { --h: 2; } #order .grid > * { grid-column: 1 / -1; } .order__photo { height: 520px; margin-top: var(--s-6); } }
+  @media (max-width: 639px) { .order__photo { aspect-ratio: 5 / 8; } }
+  /* the tablet, held upright (640 to 1023): every section one screen or two */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    #products .tile { --tile-ratio: 16 / 9; }
+    #pairing:not(.is-live) .mo-pc__visual > img { max-height: 18svh; }
+    .develop { aspect-ratio: 16 / 10; }
+    /* the order: screen one the words and the form, screen two the jar */
+    #order { --h: 2; }
+    #order > .wrap.grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(2, calc(100svh - var(--padt) - var(--padb))); row-gap: calc(var(--padt) + var(--padb)); }
+    #order > .wrap.grid > * { grid-column: 1 / -1; }
+    #order .order__photo { height: 100%; aspect-ratio: auto; margin-top: 0; }
+  }
+  /* the phone: the line-up as one column of wide pictures, the pairing photographs square, each two screens */
+  @media (max-width: 639px) {
+    #products .grid > .tile { grid-column: 1 / -1; --tile-ratio: 16 / 9; }
+    #pairing:not(.is-live) .mo-pc__visual > img { aspect-ratio: 1; max-height: none; }
+    main > #pairing[data-moment]:not(.is-live) { min-height: calc(2 * 100lvh); }
+  }
+</style>
+</head>
+<body>
+<!-- type: product (site-kind other)
+     deal: hero photo (data-calm right), nav nav-cards, close close-photo, footer footer-columns, rhythm dark-band,
+           buttons solid, mark stack, palette white-navy-tab, type mona (+ Anuphan for Thai), grounds none
+     moments: pinned-chapters (#pairing), picture-develops (#promotion photograph) -->
+
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">ข้ามไปยังเนื้อหา</a>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="stack" aria-hidden="true"></span><span data-site="brand_name">ตำเรือน</span></a>
+    <nav class="nav__links" aria-label="เมนูหลัก">
+      <div class="nav__item">
+        <a class="nav__link" href="#products">น้ำพริก <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid" data-site-list="menu">
+            <a class="menu-card span-3" href="#p-num">
+              <div class="panel"><img class="frame__img" src="assets/img/photo-f9375419-500.webp" alt="น้ำพริกหนุ่มสีเขียวในถ้วยขอบแดง" width="500" height="500" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+              <span class="t-card">น้ำพริกหนุ่ม</span>
+              <span class="t-small muted">พริกหนุ่มย่าง ตำกับหอมและกระเทียม</span>
+            </a>
+            <a class="menu-card span-3" href="#p-kaepmu">
+              <div class="panel"><img class="frame__img" src="assets/img/photo-f30500389-500.webp" alt="น้ำพริกแคบหมูโรยผักชีในถ้วยขาว" width="500" height="500" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+              <span class="t-card">น้ำพริกแคบหมู</span>
+              <span class="t-small muted">ตำกับแคบหมู กินกับข้าวเหนียว</span>
+            </a>
+            <a class="menu-card span-3" href="#p-narok">
+              <div class="panel"><img class="frame__img" src="assets/img/photo-f17060299-500.webp" alt="น้ำพริกนรกในถ้วยเล็กข้างข้าวผัด" width="500" height="500" style="object-position: 30% 100%" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+              <span class="t-card">น้ำพริกนรก</span>
+              <span class="t-small muted">พริกแห้งกับปลาย่าง ตำแห้ง</span>
+            </a>
+            <a class="menu-card span-3" href="#p-phao">
+              <div class="panel"><img class="frame__img" src="assets/img/photo-f10782378-500.webp" alt="น้ำพริกสีแดงส้มกำลังผัดในกระทะ" width="500" height="357" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+              <span class="t-card">น้ำพริกเผา</span>
+              <span class="t-small muted">พริกแห้งคั่ว เคี่ยวจนข้น</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#pairing">วิธีกิน</a></div>
+      <div class="nav__item"><a class="nav__link" href="#promotion">โปรโมชั่น</a></div>
+      <div class="nav__item"><a class="nav__link" href="#order">วิธีสั่ง</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="account.html" data-account-link>เข้าสู่ระบบ</a>
+      <a class="btn btn--primary" href="#order-form">สั่งซื้อน้ำพริก</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="เมนู">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO photo: the pot of nam prik on the left, the words in the box on the calm, dark right side -->
+  <section class="hero hero--photo" data-enter data-calm="right" aria-labelledby="hero-h">
+    <picture class="hero__bg" data-phone-fill><source media="(max-width: 639px)" srcset="assets/img/photo-f26755332-780x975.webp 780w" sizes="100vw"><img src="assets/img/photo-f26755332.webp" srcset="assets/img/photo-f26755332-500.webp 500w, assets/img/photo-f26755332-960.webp 960w, assets/img/photo-f26755332-1280.webp 1280w, assets/img/photo-f26755332.webp 1920w" sizes="100vw" width="1920" height="1272" alt="น้ำพริกกำลังผัดในหม้อ มีพริก มะเขือเทศ และผักชี คนด้วยไม้พาย" style="--ly-pos: 0% 50%; --ly-pos-phone: 20% 50%" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="product"></picture>
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__text">
+        <h1 id="hero-h" data-site-hero><span class="nb">น้ำพริกกระปุก</span> <span class="nb">สั่งออนไลน์</span> <span class="nb">ส่งถึงบ้าน</span></h1>
+        <p class="hero__lead" data-site="hero_lead">น้ำพริกหนุ่ม น้ำพริกแคบหมู น้ำพริกนรก และน้ำพริกเผา เลือกสูตรและจำนวนบนหน้านี้ แล้วส่งออเด&#8288;อร์เข้า LINE ของร้าน กระปุกละ <span data-assumed>79 บาท</span>ขึ้นไป</p>
+        <div class="btn-row"><a class="btn btn--primary" href="#order-form">สั่งซื้อน้ำพริก</a><a class="btn btn--secondary" href="#promotion">ดูโปรโมชั่น</a></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- LINE-UP: the four kinds, picture first, each with its size and price -->
+  <section class="section" id="products" style="--hm: 2" aria-labelledby="products-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="products-h" data-site="products_title">น้ำพริกสี่สูตร</h2>
+        <p data-site="products_lead">ทุกสูตรบรรจุกระปุก สั่งคละสูตรได้ในออเด&#8288;อร์เดียว</p>
+      </div>
+      <div class="grid" data-site-list="products">
+        <a class="tile span-3" id="p-num" href="#order-form">
+          <div class="tile__media"><img src="assets/img/photo-f9375419-960.webp" srcset="assets/img/photo-f9375419-500.webp 500w, assets/img/photo-f9375419-960.webp 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 302px" width="960" height="960" alt="น้ำพริกหนุ่มสีเขียวโรยผักชี ในถ้วยขอบแดง" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+          <div class="tile__head"><h3>น้ำพริกหนุ่ม</h3><span class="tile__price" data-assumed>89 บาท</span></div>
+          <p class="tile__facts"><span data-assumed>120 กรัม</span> · พริกหนุ่มย่าง หอมแดง กระเทียม</p>
+          <p>เผ็ดอ่อน หอมกลิ่นพริกย่าง กินกับแคบหมูและผักลวก</p>
+        </a>
+        <a class="tile span-3" id="p-kaepmu" href="#order-form">
+          <div class="tile__media"><img src="assets/img/photo-f30500389-960.webp" srcset="assets/img/photo-f30500389-500.webp 500w, assets/img/photo-f30500389-960.webp 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 302px" width="960" height="960" alt="น้ำพริกแคบหมูโรยต้นหอมและผักชี ในถ้วยขาว" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+          <div class="tile__head"><h3>น้ำพริกแคบหมู</h3><span class="tile__price" data-assumed>99 บาท</span></div>
+          <p class="tile__facts"><span data-assumed>120 กรัม</span> · ตำกับแคบหมูและพริกย่าง</p>
+          <p>เนื้อหยาบ ได้ความมันของแคบหมู กินกับข้าวเหนียว</p>
+        </a>
+        <a class="tile span-3" id="p-narok" href="#order-form">
+          <div class="tile__media"><img src="assets/img/photo-f17060299-960.webp" srcset="assets/img/photo-f17060299-500.webp 500w, assets/img/photo-f17060299-960.webp 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 302px" width="960" height="960" alt="น้ำพริกนรกในถ้วยเล็ก วางข้างข้าวผัดและหมูย่าง" style="object-position: 20% 100%" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+          <div class="tile__head"><h3>น้ำพริกนรก</h3><span class="tile__price" data-assumed>95 บาท</span></div>
+          <p class="tile__facts"><span data-assumed>100 กรัม</span> · พริกแห้งกับปลาย่าง ตำแห้ง</p>
+          <p>เผ็ดจัด เนื้อแห้งร่วน โรยข้าวสวยร้อนได้เลย</p>
+        </a>
+        <a class="tile span-3" id="p-phao" href="#order-form">
+          <div class="tile__media"><img src="assets/img/photo-f10782378-960.webp" srcset="assets/img/photo-f10782378-500.webp 500w, assets/img/photo-f10782378-960.webp 960w" sizes="(max-width: 639px) 140vw, (max-width: 1023px) 70vw, 420px" width="960" height="686" alt="น้ำพริกสีแดงส้มกำลังผัดในกระทะ" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+          <div class="tile__head"><h3>น้ำพริกเผา</h3><span class="tile__price" data-assumed>79 บาท</span></div>
+          <p class="tile__facts"><span data-assumed>150 กรัม</span> · พริกแห้งคั่ว เคี่ยวจนข้น</p>
+          <p>เผ็ดกลาง ออกหวาน ทาขนมปังหรือใส่ต้มยำ</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- pinned-chapters: three things eaten with nam prik, one photograph each -->
+  <section class="section" id="pairing" style="--h: 2" data-moment="pinned-chapters" aria-labelledby="pairing-h">
+    <div class="wrap mo-pc__grid">
+      <div class="mo-pc__text">
+        <h2 id="pairing-h">ของกินคู่น้ำพริก</h2>
+        <ol class="mo-pc__steps">
+          <li class="mo-pc__step">
+            <h3>ผักสดและผักลวก</h3>
+            <p>ถั่วฝักยาว กระเจี๊ยบ มะเขือ และแตงกวา กินสดหรือลวกพอสุก จิ้มได้ทั้งสี่สูตร</p>
+            <figure class="mo-pc__visual"><img src="assets/img/photo-f9375940.webp" srcset="assets/img/photo-f9375940-500.webp 500w, assets/img/photo-f9375940-960.webp 960w, assets/img/photo-f9375940.webp 1280w" sizes="(max-width: 1023px) 100vw, 50vw" width="1280" height="1280" alt="ถั่วฝักยาว กระเจี๊ยบ และมะเขือลวก จัดบนจานลายไก่" loading="lazy" decoding="async" data-source="stand-in" data-subject="use"></figure>
+          </li>
+          <li class="mo-pc__step">
+            <h3>ปลาทูทอด</h3>
+            <p>ปลาทูทอดหนึ่งตัว น้ำพริกหนึ่งถ้วย กับข้าวสวยหนึ่งจาน ครบมื้อโดยไม่ต้องทำกับข้าวเพิ่ม</p>
+            <figure class="mo-pc__visual"><img src="assets/img/photo-f22239401.webp" srcset="assets/img/photo-f22239401-500.webp 500w, assets/img/photo-f22239401-960.webp 960w, assets/img/photo-f22239401.webp 1280w" sizes="(max-width: 1023px) 100vw, 50vw" width="1280" height="962" alt="ปลาทูทอดหนึ่งตัวบนจาน ข้างถ้วยน้ำจิ้มสองถ้วย" loading="lazy" decoding="async" data-source="stand-in" data-subject="use"></figure>
+          </li>
+          <li class="mo-pc__step">
+            <h3>ข้าวเหนียวร้อน</h3>
+            <p>ปั้นข้าวเหนียวเป็นคำ จิ้มน้ำพริกหนุ่มหรือน้ำพริกแคบหมูแล้วกินได้เลย</p>
+            <figure class="mo-pc__visual"><img src="assets/img/photo-f83134747.webp" srcset="assets/img/photo-f83134747-500.webp 500w, assets/img/photo-f83134747-960.webp 960w, assets/img/photo-f83134747.webp 1280w" sizes="(max-width: 1023px) 100vw, 50vw" width="1280" height="859" alt="ข้าวเหนียวนึ่งในกระติบสาน" loading="lazy" decoding="async" data-source="stand-in" data-subject="use"></figure>
+          </li>
+        </ol>
+      </div>
+      <div class="mo-pc__visuals frame"></div>
+    </div>
+  </section>
+
+  <!-- DARK BAND: the promotion, beside the photograph that develops once (picture-develops) -->
+  <section class="section ground-inverse" id="promotion" aria-labelledby="promotion-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="promotion-h" data-site="promo_title">โปรโมชั่นซื้อหลายกระปุก</h2>
+          <p data-site="promo_lead">ส่วนลดคิดจากจำนวนกระปุกทั้งออเด&#8288;อร์ คละสูตรได้ และหักให้ทันทีในยอดรวม</p>
+        </div>
+        <ul class="rows" data-site-list="promotions">
+          <li><span class="rows__name">ครบ 3 กระปุก</span><span class="rows__value" data-assumed>ลด 10%</span></li>
+          <li><span class="rows__name">ครบ 6 กระปุก</span><span class="rows__value" data-assumed>ลด 15%</span></li>
+          <li><span class="rows__name">1 ถึง 2 กระปุก</span><span class="rows__value">ราคาปกติ</span></li>
+        </ul>
+      </div>
+      <figure class="develop span-6 start-7" data-moment="picture-develops"><img src="assets/img/photo-f35859225.webp" srcset="assets/img/photo-f35859225-500.webp 500w, assets/img/photo-f35859225-960.webp 960w, assets/img/photo-f35859225.webp 1280w" sizes="(max-width: 1023px) 100vw, 50vw" width="1280" height="1280" alt="พริกป่นในถ้วยเล็ก วางบนผ้าแดงกับพริกชี้ฟ้าแดงสด" loading="lazy" decoding="async" data-source="stand-in" data-subject="parts"></figure>
+    </div>
+  </section>
+
+  <!-- ORDER: the words and the order form on the left, the jar on the right; the order goes out as a LINE message -->
+  <section class="section" id="order" style="--hm: 2" aria-labelledby="order-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="order-h">วิธีสั่งน้ำพริก</h2>
+          <p>กรอกแล้วกดส่ง ออเด&#8288;อร์จะเปิดใน LINE ให้เลือกแชตของร้าน</p>
+        </div>
+        <!-- data-line-id: the shop's LINE Official Account id (with its @). Empty: the order opens LINE's share screen
+             and the customer picks the shop's chat. Set: the order opens the shop's chat directly. -->
+      <form class="form" id="order-form" action="https://line.me/R/share" method="get" data-endpoint="" data-line-id="" data-fix="มี {n} ช่องที่ต้องแก้" novalidate>
+        <input type="hidden" name="text" id="o-text" value="">
+        <fieldset class="order__qty" data-site-list="qty">
+          <legend>จำนวนกระปุก</legend>
+          <div class="field"><label for="q-num">น้ำพริกหนุ่ม <span data-assumed>89 บาท</span></label>
+            <input id="q-num" type="text" inputmode="numeric" pattern="[0-9]{1,2}" value="0" autocomplete="off" data-product="น้ำพริกหนุ่ม" data-price="89" aria-describedby="q-num-err">
+            <p class="field__error" id="q-num-err" hidden>ใส่จำนวนเป็นตัวเลข และสั่งอย่างน้อย 1 กระปุก</p></div>
+          <div class="field"><label for="q-kaepmu">น้ำพริกแคบหมู <span data-assumed>99 บาท</span></label>
+            <input id="q-kaepmu" type="text" inputmode="numeric" pattern="[0-9]{1,2}" value="0" autocomplete="off" data-product="น้ำพริกแคบหมู" data-price="99" aria-describedby="q-kaepmu-err">
+            <p class="field__error" id="q-kaepmu-err" hidden>ใส่จำนวนน้ำพริกแคบหมูเป็นตัวเลข</p></div>
+          <div class="field"><label for="q-narok">น้ำพริกนรก <span data-assumed>95 บาท</span></label>
+            <input id="q-narok" type="text" inputmode="numeric" pattern="[0-9]{1,2}" value="0" autocomplete="off" data-product="น้ำพริกนรก" data-price="95" aria-describedby="q-narok-err">
+            <p class="field__error" id="q-narok-err" hidden>ใส่จำนวนน้ำพริกนรกเป็นตัวเลข</p></div>
+          <div class="field"><label for="q-phao">น้ำพริกเผา <span data-assumed>79 บาท</span></label>
+            <input id="q-phao" type="text" inputmode="numeric" pattern="[0-9]{1,2}" value="0" autocomplete="off" data-product="น้ำพริกเผา" data-price="79" aria-describedby="q-phao-err">
+            <p class="field__error" id="q-phao-err" hidden>ใส่จำนวนน้ำพริกเผาเป็นตัวเลข</p></div>
+        </fieldset>
+        <div class="field field--full"><label for="o-name">ชื่อผู้รับ</label>
+          <input id="o-name" type="text" autocomplete="name" required aria-describedby="o-name-err">
+          <p class="field__error" id="o-name-err" hidden>เขียนชื่อผู้รับของ</p></div>
+        <div class="field field--full"><label for="o-address">ที่อยู่จัดส่งและเบอร์โทร</label>
+          <textarea id="o-address" rows="3" autocomplete="street-address" required aria-describedby="o-address-err"></textarea>
+          <p class="field__error" id="o-address-err" hidden>เขียนที่อยู่จัดส่งและเบอร์โทรที่ติดต่อได้</p></div>
+        <p class="order__sum"><span id="o-count">ยังไม่ได้เลือกน้ำพริก</span><output id="o-total" for="q-num q-kaepmu q-narok q-phao">0 บาท</output></p>
+        <div class="btn-row">
+          <button class="btn btn--primary" type="submit">ส่งออเด&#8288;อร์เข้า LINE</button>
+          <a class="btn btn--secondary" href="https://line.tamruean.example/add" data-line-add>แอดไลน์ร้าน</a>
+        </div>
+        <p class="form__status" role="status" data-form-status></p>
+        <p class="t-small" data-member-note hidden></p>
+        <p class="t-small muted">ยอดนี้ยังไม่รวมค่าส่ง ร้านแจ้งค่าส่งและวิธีชำระเงินในแชต LINE ร้านเก็บออเด&#8288;อร์นี้ไว้เพื่อจัดส่งเท่านั้น</p>
+      </form>
+      </div>
+      <figure class="order__photo span-6 start-7"><img src="assets/img/photo-f166044644.webp" srcset="assets/img/photo-f166044644-500.webp 500w, assets/img/photo-f166044644-960.webp 960w, assets/img/photo-f166044644.webp 1280w" sizes="(max-width: 1279px) 100vw, 628px" width="1280" height="1561" alt="น้ำพริกสีแดงเต็มกระปุกแก้ว เปิดฝา" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></figure>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--photo">
+      <div class="section-head--split">
+        <div><h2 id="close-h" data-site="close_title">น้ำพริกสี่สูตร ส่งถึงบ้าน</h2><p class="t-lead" data-site-close-lead>ครบ 3 กระปุก <span data-assumed>ลด 10%</span> คละสูตรได้</p></div>
+        <a class="btn btn--primary" href="#order-form">สั่งซื้อน้ำพริก</a>
+      </div>
+      <div class="close__media"><img src="assets/img/photo-f88841861.webp" srcset="assets/img/photo-f88841861-500.webp 500w, assets/img/photo-f88841861-960.webp 960w, assets/img/photo-f88841861.webp 1280w" sizes="(max-width: 639px) 200vw, 1280px" width="1280" height="853" alt="พริกแห้งสีแดงเข้มกองเต็มภาพ" loading="lazy" decoding="async" data-source="stand-in" data-subject="parts"></div>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><span class="mark" data-mark="stack" aria-hidden="true"></span><span data-site="brand_name">ตำเรือน</span></a>
+          <p class="footer__lede" data-site="footer_lede">น้ำพริกกระปุก สั่งทาง LINE</p>
+        </div>
+        <div class="span-2 footer__col"><h3>น้ำพริก</h3><ul><li><a href="#products">น้ำพริกสี่สูตร</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>วิธีกิน</h3><ul><li><a href="#pairing">ของกินคู่น้ำพริก</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>โปรโมชั่น</h3><ul><li><a href="#promotion">ส่วนลดหลายกระปุก</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>วิธีสั่ง</h3><ul><li><a href="#order">ขั้นตอนสั่งซื้อ</a></li><li><a href="https://line.tamruean.example/add" data-line-add>แอดไลน์ร้าน</a></li><li><a href="account.html">บัญชีสมาชิก</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 <span data-site="brand_name">ตำเรือน</span></span>
+        <div class="socials"></div>
+        <a class="credits" href="credits.html">Photographs via Wikimedia Commons</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<nav class="actionbar" aria-label="สั่งซื้อ">
+  <a class="btn btn--primary" href="#order-form">สั่งซื้อน้ำพริก</a>
+</nav>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<!-- the shop page's own script (home.js): the content from the database, the order card's totals and the LINE
+     message. It loads after system.js, so its submit listener runs after the kit's field checks. vendor/supabase.js
+     is the Supabase client (MIT), used only when config.js is filled in. -->
+<script src="vendor/supabase.js" defer></script>
+<script type="module" src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/* The member page and the admin page: plain working pages on the shop's own system (assets/system.css),
+   its tokens, buttons, fields and rows. Nothing here is used by the shop page. */
+:lang(th) :is(h1, h2, h3) { line-height: 1.3; }
+:lang(th) body { line-height: 1.7; }
+:focus-visible { outline-color: var(--ink); }
+
+.app { padding: calc(var(--nav) + var(--s-7)) 0 var(--s-9); min-height: 100svh; box-sizing: border-box; }
+.app__title { font: var(--display-weight) var(--t-h2)/1.3 var(--font-display); letter-spacing: var(--display-tracking); margin: 0 0 var(--s-6); }
+.app__h2 { font: 500 var(--t-lead)/1.4 var(--font-text); letter-spacing: -0.01em; margin: 0 0 var(--s-5); }
+.app__card { background: var(--surface); border-radius: var(--r-lg); padding: var(--s-6); }
+.app__narrow { max-width: 560px; }
+.app__note { color: var(--muted); max-width: 70ch; margin: 0 0 var(--s-5); }
+.app__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-5); }
+.app__bar > p { margin: 0; }
+/* under the sign-in form: the way to the join page, and back */
+.app__switch { display: grid; gap: var(--s-3); margin-top: var(--s-4); padding-top: var(--s-5); border-top: 1px solid var(--line); }
+.app__switch p { margin: 0; color: var(--muted); }
+.app__wide { width: 100%; justify-content: center; }
+/* these pages have no menu sheet, so the bar keeps its links and buttons at every width */
+.nav .nav__bar .app-nav { display: flex; margin-left: auto; }
+.nav .nav__bar .app-nav.nav__actions > * { display: inline-flex; }
+.app [data-view] > .grid { row-gap: var(--s-6); }
+
+/* tabs of the admin page */
+.app__tabs { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-5); border-bottom: 1px solid var(--line); }
+.app__tab { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: var(--s-3) var(--s-4);
+  min-height: 44px; font: 500 var(--t-body)/1.4 var(--font-text); color: var(--muted); cursor: pointer; }
+.app__tab:hover { color: var(--ink); }
+.app__tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.app__status { margin: 0 0 var(--s-4); }
+
+/* lists: orders, members */
+.app__list { display: grid; gap: var(--s-4); margin: 0; }
+.app__item { border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s-5); display: grid; gap: var(--s-3); }
+.app__item-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s-2) var(--s-5); }
+.app__item-head strong { font-weight: 500; }
+.app__item p { margin: 0; }
+.app__meta { color: var(--muted); font-size: var(--t-small); }
+.app__lines { display: grid; gap: var(--s-1); }
+.app__lines li { display: flex; justify-content: space-between; gap: var(--s-4); font-variant-numeric: tabular-nums; }
+.app__total { display: flex; justify-content: space-between; gap: var(--s-4); font-weight: 500; font-variant-numeric: tabular-nums; border-top: 1px solid var(--line); padding-top: var(--s-3); }
+.app__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); }
+.app__actions select { height: 44px; padding-inline: var(--s-3); border: 1px solid var(--line-strong, var(--line)); border-radius: var(--r-sm); background: var(--bg); color: var(--ink); font: inherit; }
+.app__address { white-space: pre-line; }
+.app__empty { color: var(--muted); }
+
+/* product editors */
+.app__products { display: grid; gap: var(--s-5); margin-bottom: var(--s-7); }
+.app__product { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--s-5); align-items: start; }
+.app__thumb { aspect-ratio: 1; border-radius: var(--r-md); overflow: hidden; background: var(--bg); border: 1px solid var(--line); }
+.app__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.app__check { display: flex; align-items: center; gap: var(--s-2); min-height: 44px; font-size: var(--t-small); font-weight: 500; }
+.app__check input { width: 20px; height: 20px; accent-color: var(--ink); }
+.app__file input { height: auto; padding: var(--s-3); }
+.btn--danger { color: #b42318; }
+
+/* promotion steps */
+.app__promo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: var(--s-4); align-items: end; margin-bottom: var(--s-4); }
+
+/* the member page on a computer: signing in, joining, a new password and the waits sit in the middle of the
+   screen, the title centred over the card; once signed in the page is the full-width account (profile and orders) */
+@media (min-width: 640px) {
+  .app--account:not([data-showing="member"]) { display: flex; flex-direction: column; justify-content: center; padding-bottom: var(--s-7); }
+  .app--account:not([data-showing="member"]) > .wrap { width: 100%; }
+  .app--account:not([data-showing="member"]) .app__title,
+  .app--account:not([data-showing="member"]) [data-view="setup"],
+  .app--account:not([data-showing="member"]) [data-view="loading"] { text-align: center; }
+  .app--account .app__narrow { margin-inline: auto; }
+}
+
+@media (max-width: 1023px) {
+  .app [data-view] .grid > [class*="span-"] { grid-column: 1 / -1; }
+}
+@media (max-width: 639px) {
+  .app { padding-top: calc(var(--nav) + var(--s-6)); }
+  .app__card { padding: var(--s-5); }
+  .app__product { grid-template-columns: minmax(0, 1fr); }
+  .app__thumb { max-width: 200px; }
+  .nav .nav__bar .app-nav.nav__actions > .nav__link { display: none; }
+  .nav .app-nav .btn { height: 40px; padding-inline: var(--s-4); font-size: var(--t-small); }
+}
